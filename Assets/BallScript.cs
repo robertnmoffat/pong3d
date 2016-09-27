@@ -25,14 +25,14 @@ public class BallScript : MonoBehaviour {
             float deltaY = transform.position.y - col.transform.position.y;
             print(deltaY);
             velx = velx*-1.1f;
-            vely = deltaY*deltaY * deltaY;
+			vely = deltaY * 2;
         }
         if (col.name == "Right Paddle")
         {
             float deltaY = transform.position.y - col.transform.position.y;
             print(deltaY);
             velx = velx*-1.1f;
-            vely = deltaY * deltaY * deltaY;
+			vely = deltaY * 2;
         }
         if (col.name == "Top Wall"||col.name=="Bottom Wall")
         {
