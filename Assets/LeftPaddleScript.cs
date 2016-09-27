@@ -13,5 +13,8 @@ public class LeftPaddleScript : MonoBehaviour {
         if(Input.GetKey("up")){
             transform.Translate(Vector3.up * Time.deltaTime, Space.World);
         }
+		if(Input.GetKey("down")){
+			transform.Translate(Vector3.up * Time.deltaTime*-1, Space.World);
+		}
 	}
 }

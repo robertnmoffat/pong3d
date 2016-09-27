@@ -14,6 +14,13 @@ public class BallScript : MonoBehaviour {
         //transform.Translate(Vector3.forward * Time.deltaTime);
         transform.Translate(Vector3.left * Time.deltaTime * velx, Space.World);
         transform.Translate(Vector3.up * Time.deltaTime * vely, Space.World);
+
+		if (transform.position.x > 6 || transform.position.x < -6) {
+			velx = -2; 
+			vely = 0;
+
+			transform.position = new Vector3 (0,0,5);
+		}
     }
 
     void OnTriggerEnter(Collider col)
@@ -39,5 +46,6 @@ public class BallScript : MonoBehaviour {
             vely = vely*-1;
         }
         //if (col.gameObject.name == "prop_powerCube")
+
     }
 }

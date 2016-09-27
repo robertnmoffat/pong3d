@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Assets\BallScript.cs" />
     <Compile Include="Assets\LeftPaddleScript.cs" />
+    <Compile Include="Assets\RightPaddle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
