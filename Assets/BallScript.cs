@@ -1,25 +1,58 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class BallScript : MonoBehaviour {
     float velx = -2, vely = 0;
+    ScoreScript score;
+    public bool playing = false;
+    public Canvas gameOverCanvas;
+    public Text messageText;
+
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        GameObject go = GameObject.Find("ScoreText");
+        score = (ScoreScript)go.GetComponent(typeof(ScoreScript));
+    }
 	
 	// Update is called once per frame
 	void Update () {
         //transform.Translate(Vector3.forward * Time.deltaTime);
-        transform.Translate(Vector3.left * Time.deltaTime * velx, Space.World);
-        transform.Translate(Vector3.up * Time.deltaTime * vely, Space.World);
+        if (playing) {
+            transform.Translate(Vector3.left * Time.deltaTime * velx, Space.World);
+            transform.Translate(Vector3.up * Time.deltaTime * vely, Space.World);
+        }
 
 		if (transform.position.x > 6 || transform.position.x < -6) {
+            if (transform.position.x > 0)
+                score.increaseLeft();
+            else
+                score.increaseRight();
+
 			velx = -2; 
 			vely = 0;
 
 			transform.position = new Vector3 (0,0,5);
+
+            switch (score.checkWinner()) {
+                case 0:
+                    break;
+                case 1:
+                    score.resetScores();                    
+                    messageText.text = "Left Wins!";
+                    playing = false;
+                    gameOverCanvas.enabled = true;
+                    
+                    break;
+                case 2:
+                    score.resetScores();
+                    playing = false;
+                    messageText.text = "Right Wins!";
+                    gameOverCanvas.enabled = true;
+                    
+                    break;
+            }
 		}
     }
 
@@ -47,5 +80,13 @@ public class BallScript : MonoBehaviour {
         }
         //if (col.gameObject.name == "prop_powerCube")
 
+    }
+
+    public void startPlay() {
+        playing = true;
+    }
+
+    public void stopPlay() {
+        playing = false;
     }
 }
