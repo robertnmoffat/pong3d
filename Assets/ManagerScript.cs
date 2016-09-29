@@ -23,14 +23,18 @@ public class ManagerScript : MonoBehaviour {
 	void Update () {
         handleTouch();
 
-        if (Input.GetKey("`")&&!usingConsole)
+        if (Input.GetKey("c")&&!usingConsole)
         {
             usingConsole = true;
             consoleCanvas.enabled = true;
         }
 
-        if (Input.GetKeyDown("enter")&&usingConsole) {
+        if (Input.GetKeyDown(KeyCode.Return)&&usingConsole) {
             inputText.text = "";
+        }
+	if (Input.GetKeyDown(KeyCode.Escape)&&usingConsole) {
+            usingConsole = false;
+		consoleCanvas.enabled = false;
         }
 
     }
